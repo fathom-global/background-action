@@ -3,8 +3,9 @@ const cp = require('child_process')
 const core = require('@actions/core')
 
 // shows how the runner will run a javascript action with env / stdout protocol
+jest.setTimeout(30000)
+
 test('timeout', (done) => {
-    jest.setTimeout(30000)
     Object.assign(process.env, require('./timeout-env'))
 
     const main = cp.spawn('bash', ['--noprofile', '--norc', '-eo', 'pipefail', '-c', 'node index.js'], { detached: false, env: process.env })
