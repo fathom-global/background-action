@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Runs commands in the background with logging and failure detection. `background-action` will send your processes to the background once a set of files, ports, sockets or http resources are available. It can optionally tail output until ready/timeout and/or log output stderr/stdout post-run.",
   "main": "index.js",
+  "engines": {
+    "node": "16"
+  },
   "scripts": {
     "lint": "eslint .",
     "build": "ncc build index.js -o dist --source-map",
@@ -35,7 +38,7 @@
     "wait-on": "^7.0.1"
   },
   "devDependencies": {
-    "@zeit/ncc": "^0.22.3",
+    "@vercel/ncc": "^0.36.1",
     "eslint": "^7.10.0",
     "jest": "^28.1.3"
   }
