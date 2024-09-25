@@ -1,5 +1,8 @@
 name: 'background-action'
-description: 'Send processes to the background once a set of files, ports, sockets or http resources are available. Optionally tail output until ready/timeout and/or log output stderr/stdout post-run.'
+branding:
+  color: orange
+  icon: terminal
+description: Background commands with log tailing/capture; waits until file/port/socket/http are ready to proceed. Isolates/dedupe errors.
 inputs:
   run:
     description: commands to run, supports multi-line commands (to background multiple processes, use & at the end of each line)
@@ -34,6 +37,6 @@ inputs:
     default: true
 
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'dist/index.js'
   post: 'dist/index.js'

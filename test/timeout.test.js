@@ -1,6 +1,9 @@
 const process = require('process')
 const cp = require('child_process')
 const core = require('@actions/core')
+const pkg = require('../package.json');
+
+jest.setTimeout(30000)
 
 // shows how the runner will run a javascript action with env / stdout protocol
 jest.setTimeout(30000)
@@ -8,7 +11,7 @@ jest.setTimeout(30000)
 test('timeout', (done) => {
     Object.assign(process.env, require('./timeout-env'))
 
-    const main = cp.spawn('bash', ['--noprofile', '--norc', '-eo', 'pipefail', '-c', 'node index.js'], { detached: false, env: process.env })
+    const main = cp.spawn('bash', ['--noprofile', '--norc', '-eo', 'pipefail', '-c', `node ${pkg.main}`], { detached: false, env: process.env })
 
     main.stdout.on('data', (data) => {
         if (data.toString().startsWith('::save-state name=')) {

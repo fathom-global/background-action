@@ -28,9 +28,9 @@ jobs:
     env:
       API_PORT: 1212
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: JarvusInnovations/background-action@v1
-      - name: Bootstrap System Under Test (SUT)
+        name: Bootstrap System Under Test (SUT)
         with:
           run: |
             npm install
@@ -41,6 +41,7 @@ jobs:
           # npm install will count towards the wait-for timeout
           # whenever possible, move unrelated scripts to a different step
           # to background multiple processes: add & to the end of the command
+
           wait-on: |
             http://localhost:${{ env.API_PORT }}
             http-get://localhost:2121
@@ -48,14 +49,20 @@ jobs:
             file://very-important-secrets.txt
           # IMPORTANT: to use environment variables in wait-on, you must use this form: ${{ env.VAR }}
           # See wait-on section below for all resource types and prefixes
+
           tail: true # true = stderr,stdout
           # This will allow you to monitor the progress live
+
           log-output-resume: stderr
-          # Eliminates previosuly output stderr log entries from post-run output
+          # Eliminates previously output stderr log entries from post-run output
+
           wait-for: 5m
+
           log-output: stderr,stdout # same as true
+
           log-output-if: failure
           # failure = exit-early or timeout
+
           working-directory: backend
           # sets the working directory (cwd) for the shell running commands
 
@@ -78,7 +85,7 @@ jobs:
 
 ### wait-on
 
-`background-action` leverages the handy [wait-on](https://www.npmjs.com/package/wait-on) package to control flow. You can pass any number of resources in the `wait-on` configuration parameter seperated by commas or newlines. For advanced use cases, such as: client-side SSL certs, authorization, proxy configuration and/or custom http headers you can provide a JSON serialized configuration object that matches [wait-on's node.js api usage](https://www.npmjs.com/package/wait-on#nodejs-api-usage).
+`background-action` leverages the handy [wait-on](https://www.npmjs.com/package/wait-on) package to control flow. You can pass any number of resources in the `wait-on` configuration parameter separated by commas or newlines. For advanced use cases, such as: client-side SSL certs, authorization, proxy configuration and/or custom http headers you can provide a JSON serialized configuration object that matches [wait-on's node.js api usage](https://www.npmjs.com/package/wait-on#nodejs-api-usage).
 
 #### Resource Types
 

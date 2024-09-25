@@ -11,18 +11,17 @@ jobs:
   jest:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - run: npm ci
     - run: npm test
 
-  # test action works running from the graph
   success:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2-beta
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
       with:
-        node-version: '12'
+        node-version: '20'
     - run: npm install
     - uses: ./
       with:
