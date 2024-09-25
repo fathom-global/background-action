@@ -3,9 +3,6 @@
   "version": "1.0.5",
   "description": "Background processes: tail std(out|err), dedupe post-run lines. Monitor exit-code and file/port/socket/http(s) (un)readiness.",
   "main": "index.js",
-  "engines": {
-    "node": "16"
-  },
   "scripts": {
     "lint": "eslint .",
     "build": "npx @vercel/ncc build index.js -o dist --source-map",

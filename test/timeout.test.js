@@ -6,8 +6,6 @@ const pkg = require('../package.json');
 jest.setTimeout(30000)
 
 // shows how the runner will run a javascript action with env / stdout protocol
-jest.setTimeout(30000)
-
 test('timeout', (done) => {
     Object.assign(process.env, require('./timeout-env'))
 
